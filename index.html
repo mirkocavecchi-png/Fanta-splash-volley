@@ -5,325 +5,245 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fanta Splash Volley</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap
 
 <style>
-:root{
- --ocean:#0077b6;--sky:#00b4d8;--foam:#90e0ef;
- --sand:#ffd166;--coral:#ff6b6b;--deep:#03045e;
- --white:#fff;--glass:rgba(255,255,255,.14);
-}
-
-/* BASE */
-*{box-sizing:border-box;margin:0;padding:0}
 body{
- font-family:'Nunito',sans-serif;
- background:
-  radial-gradient(circle at 10% 80%,rgba(255,209,102,.12),transparent 40%),
-  radial-gradient(circle at 90% 20%,rgba(144,224,239,.18),transparent 45%),
-  linear-gradient(160deg,#03045e,#0077b6,#00b4d8);
- color:#fff;min-height:100vh;overflow-x:hidden;
+  font-family:'Nunito',sans-serif;
+  background:linear-gradient(160deg,#03045e,#0077b6,#00b4d8);
+  color:#fff;
+  margin:0;
 }
-
-/* TOPBAR */
-.topbar{
- display:flex;flex-wrap:wrap;gap:12px;
- background:#03045e;padding:12px;
- position:sticky;top:0;z-index:20;
+header{
+  background:#03045e;
+  padding:16px;
+  text-align:center;
 }
-.topbar a{color:#fff;text-decoration:none;font-weight:700}
-
-/* HERO */
-.hero{text-align:center;padding:45px 20px}
-.hero h1{
- font-family:'Pacifico',cursive;
- font-size:clamp(2.6rem,8vw,5.8rem);
- background:linear-gradient(175deg,#caf0f8,#90e0ef,#00b4d8,#0077b6);
- -webkit-background-clip:text;
- -webkit-text-fill-color:transparent;
- filter:drop-shadow(0 2px 20px rgba(0,180,216,.8));
- animation:shine 4s ease-in-out infinite alternate;
+header h1{margin:0;font-weight:900}
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
 }
-@keyframes shine{
- 0%{filter:drop-shadow(0 2px 12px rgba(0,180,216,.4))}
- 100%{filter:drop-shadow(0 6px 30px rgba(0,180,216,.9))}
-}
-
-/* MAIN */
-main{max-width:1200px;margin:auto;padding:20px}
-
-/* SEZIONI */
 .section-title{
- font-family:'Pacifico',cursive;
- font-size:1.6rem;
- color:var(--foam);
- margin:36px 0 18px;
+  font-size:1.5rem;
+  font-weight:900;
+  margin:30px 0 12px;
 }
-
-/* BOTTONI */
 .btn{
- background:linear-gradient(135deg,var(--coral),#ff4757);
- border:none;color:#fff;
- padding:10px 18px;border-radius:14px;
- cursor:pointer;font-weight:900;
- transition:transform .15s;
+  background:#ff6b6b;
+  border:none;
+  padding:10px 18px;
+  border-radius:12px;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
 }
-.btn:hover{transform:translateY(-2px)}
-
-/* ONDE */
-.wave-wrap{
- position:relative;height:90px;
- margin:40px 0;overflow:hidden;
- cursor:pointer;
+.team{
+  background:rgba(255,255,255,.14);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:20px;
 }
-.wave-layer{
- position:absolute;inset:0;
- background:radial-gradient(circle at var(--x) var(--y),
- rgba(144,224,239,.45),transparent 60%);
- opacity:0;transition:opacity .25s;
+.team.winner{
+  border:2px solid #ffd166;
+  box-shadow:0 0 20px rgba(255,209,102,.8);
 }
-.wave-wrap.active .wave-layer{
- opacity:1;animation:ripple 1.2s ease-out;
-}
-@keyframes ripple{from{transform:scale(.3)}to{transform:scale(1.4)}}
-
-/* SQUADRE */
-.teams{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
- gap:20px;
-}
-.card{
- background:var(--glass);
- backdrop-filter:blur(16px);
- border:1px solid rgba(144,224,239,.22);
- border-radius:20px;
- padding:16px;
- position:relative;
- transition:transform .25s, box-shadow .25s;
-}
-.card:hover{
- transform:translateY(-6px) scale(1.01);
- box-shadow:0 20px 60px rgba(0,0,0,.35);
-}
-
-/* SQUADRA VINCENTE */
-.winner{
- border:2px solid #ffd166;
- animation:winnerPulse 2.6s infinite;
-}
-@keyframes winnerPulse{
- 0%{box-shadow:0 0 0 0 rgba(255,209,102,.55)}
- 70%{box-shadow:0 0 0 18px rgba(255,209,102,0)}
- 100%{box-shadow:0 0 0 0 rgba(255,209,102,0)}
-}
-.winner-badge{
- position:absolute;top:-14px;left:50%;
- transform:translateX(-50%);
- background:linear-gradient(135deg,#ffd166,#ffb703);
- color:#03045e;
- padding:6px 14px;border-radius:20px;
- font-size:.8rem;font-weight:900;
-}
-
-/* MEDIA */
 .media img,.media video{
- width:100%;border-radius:14px;
- box-shadow:0 12px 35px rgba(0,0,0,.35);
- margin-top:8px;
- transition:transform .25s;
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:14px;
+  margin-top:8px;
 }
-.media img:hover,.media video:hover{transform:scale(1.03)}
-
-/* STELLE */
+.delete-btn{
+  background:#c0392b;
+  border:none;
+  padding:6px 10px;
+  border-radius:8px;
+  color:#fff;
+  font-size:.8rem;
+  cursor:pointer;
+  margin-top:6px;
+}
 .stars button{
- background:none;border:none;
- font-size:1.35rem;cursor:pointer;
- filter:grayscale(1) opacity(.45);
- transition:.15s;
+  background:none;
+  border:none;
+  font-size:1.2rem;
+  cursor:pointer;
 }
-.stars button:hover{transform:scale(1.4);filter:none}
-
-/* CLASSIFICA */
-#ranking{
- background:rgba(0,0,0,.25);
- border-radius:22px;
- padding:18px;
+.sound-box{margin-bottom:20px}
+.ranking{
+  background:rgba(0,0,0,.25);
+  border-radius:18px;
+  padding:16px;
 }
-.rank-row{
- padding:6px 10px;border-radius:12px;
-}
-.rank-up{background:rgba(144,224,239,.25);animation:rankRise .8s}
-.rank-down{background:rgba(255,107,107,.18);animation:rankFall .8s}
-@keyframes rankRise{from{transform:translateY(14px)}to{transform:translateY(0)}}
-@keyframes rankFall{from{transform:translateY(-14px)}to{transform:translateY(0)}}
-
-/* PREMI */
-.prizes{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
- gap:14px;
-}
-.prize{
- background:linear-gradient(160deg,#ffd166,#ffb703);
- color:#03045e;
- border-radius:16px;
- padding:16px;
- font-weight:900;
- position:relative;overflow:hidden;
-}
-.prize::after{
- content:'';
- position:absolute;inset:0;
- background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4),transparent 70%);
- animation:shinePrize 3.5s infinite;
-}
-@keyframes shinePrize{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
- <a href="tel:+393497225376">📞 +39 3497225376</a>
- <a href="https://instagram.com/nuovafellegara" target="_blank">📸 Instagram</a>
- <a href="https://www.google.com/maps/search/Via+della+Botte+7+Fellegara" target="_blank">📍 Fellegara</a>
-</div>
-
-<div class="hero">
- <h1>Fanta Splash Volley</h1>
- <p>Carica e vota foto e video delle squadre 🏐</p>
-</div>
+<header>
+  <h1>🏐 Fanta Splash Volley</h1>
+</header>
 
 <main>
 
-<button class="btn" id="soundBtn">🔊 Suono ON</button>
-
-<div class="section-title">🎁 Premi</div>
-<div class="prizes" id="prizes"></div>
-
-<div class="wave-wrap" onclick="rippleWave(event,this)">
- <div class="wave-layer"></div>
+<div class="sound-box">
+  <button class="btn" onclick="toggleSound()" id="soundBtn">🔊 Suono ON</button>
 </div>
 
 <div class="section-title">🏆 Classifica</div>
-<div id="ranking"></div>
-
-<div class="wave-wrap" onclick="rippleWave(event,this)">
- <div class="wave-layer"></div>
-</div>
+<div class="ranking" id="ranking"></div>
 
 <div class="section-title">📷 Squadre</div>
 <button class="btn" onclick="addTeam()">➕ Aggiungi squadra</button>
-<div class="teams" id="teams"></div>
+
+<div id="teams"></div>
 
 </main>
 
 <script>
 /* STORAGE */
-const DB='fsv_full';
-const VOTE_SOUND_KEY='fsv_vote_sound';
+const DB_KEY="fsv_complete";
+const SOUND_KEY="fsv_sound";
+const VOTE_KEY="fsv_votes";
 
-/* SUONO */
-let soundEnabled=localStorage.getItem(VOTE_SOUND_KEY)!=='off';
-const voteSound=new Audio(
-'data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAA...'
-);
-voteSound.volume=.35;
+/* SOUND */
+let soundEnabled = localStorage.getItem(SOUND_KEY)!=="off";
+const voteSound = new Audio("data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YQAAAAA=");
+voteSound.volume=0.35;
 
-/* DATI */
-let data=JSON.parse(localStorage.getItem(DB))||{teams:[],votes:{}};
-let lastRanking=[];
+/* DATA */
+let data = JSON.parse(localStorage.getItem(DB_KEY)) || { teams: [] };
+let votes = JSON.parse(localStorage.getItem(VOTE_KEY)) || {};
 
-/* HELPER */
-function save(){localStorage.setItem(DB,JSON.stringify(data))}
+function save(){
+  localStorage.setItem(DB_KEY, JSON.stringify(data));
+  localStorage.setItem(VOTE_KEY, JSON.stringify(votes));
+}
+
+/* SOUND */
 function toggleSound(){
- soundEnabled=!soundEnabled;
- localStorage.setItem(VOTE_SOUND_KEY,soundEnabled?'on':'off');
- updateSoundBtn();
+  soundEnabled=!soundEnabled;
+  localStorage.setItem(SOUND_KEY,soundEnabled?"on":"off");
+  updateSoundBtn();
 }
 function updateSoundBtn(){
- document.getElementById('soundBtn').textContent =
-  soundEnabled?'🔊 Suono ON':'🔇 Suono OFF';
+  document.getElementById("soundBtn").textContent =
+   soundEnabled ? "🔊 Suono ON" : "🔇 Suono OFF";
 }
 
-/* ONDE */
-function rippleWave(e,el){
- const r=el.getBoundingClientRect();
- el.style.setProperty('--x',((e.clientX-r.left)/r.width*100)+'%');
- el.style.setProperty('--y',((e.clientY-r.top)/r.height*100)+'%');
- el.classList.remove('active');el.offsetWidth;el.classList.add('active');
-}
-
-/* APP */
+/* TEAM */
 function addTeam(){
- const n=prompt("Nome squadra");
- if(!n)return;
- data.teams.push({id:Date.now(),name:n,media:[]});
- save();render();
+  const name = prompt("Nome squadra:");
+  if(!name) return;
+  data.teams.push({ id:Date.now(), name, media:[] });
+  save(); render();
 }
-function addMedia(tid,type){
- const url=prompt("Incolla URL media");
- if(!url)return;
- data.teams.find(t=>t.id===tid)
-  .media.push({id:Date.now(),type,src:url,rating:0});
- save();render();
+
+/* MEDIA */
+function uploadMedia(teamId,type,input){
+  const file = input.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = e=>{
+    const team = data.teams.find(t=>t.id===teamId);
+    team.media.push({
+      id:Date.now(),
+      type,
+      src:e.target.result,
+      total:0,
+      count:0
+    });
+    save(); render();
+  };
+  reader.readAsDataURL(file);
+  input.value="";
 }
-function vote(mid){
- if(data.votes[mid])return alert("Hai già votato!");
- data.votes[mid]=1;
- data.teams.forEach(t=>t.media.forEach(m=>{
-  if(m.id===mid)m.rating++;
- }));
- if(soundEnabled){voteSound.currentTime=0;voteSound.play().catch(()=>{})}
- alert("🙏 GRAZIE PER AVER VOTATO!");
- save();render();
+
+function deleteMedia(teamId,mediaId){
+  const team = data.teams.find(t=>t.id===teamId);
+  team.media = team.media.filter(m=>m.id!==mediaId);
+  save(); render();
 }
-function score(t){
- if(!t.media.length)return 0;
- return (t.media.reduce((s,m)=>s+m.rating,0)/t.media.length).toFixed(2);
+
+/* VOTE */
+function vote(mediaId,value){
+  if(votes[mediaId]) return alert("Hai già votato!");
+  votes[mediaId]=value;
+  data.teams.forEach(t=>t.media.forEach(m=>{
+    if(m.id===mediaId){
+      m.total+=value;
+      m.count++;
+    }
+  }));
+  if(soundEnabled){
+    voteSound.currentTime=0;
+    voteSound.play().catch(()=>{});
+  }
+  alert("🙏 GRAZIE PER AVER VOTATO!");
+  save(); render();
+}
+
+/* SCORE */
+function teamScore(t){
+  let tot=0, cnt=0;
+  t.media.forEach(m=>{
+    tot+=m.total;
+    cnt+=m.count;
+  });
+  return cnt? (tot/cnt).toFixed(2):'0.00';
 }
 
 /* RENDER */
 function render(){
- const teamsEl=document.getElementById('teams');teamsEl.innerHTML='';
- const ranking=[...data.teams].sort((a,b)=>score(b)-score(a));
- ranking.forEach(t=>{
-  teamsEl.innerHTML+=`
-   <div class="card ${t.id===ranking[0]?.id?'winner':''}">
-     ${t.id===ranking[0]?.id?'<div class="winner-badge">🏆 Vincente</div>':''}
-     <h3>${t.name}</h3>
-     <button class="btn" onclick="addMedia(${t.id},'foto')">📷</button>
-     <button class="btn" onclick="addMedia(${t.id},'video')">🎬</button>
-     ${t.media.map(m=>`
-      <div class="media">
-       ${m.type==='foto'?`<img src/div>
-      </div>`).join('')}
-   </div>`;
- });
+  const teamsEl=document.getElementById("teams");
+  teamsEl.innerHTML="";
 
- const currentRanking=ranking.map(t=>t.id);
- document.getElementById('ranking').innerHTML=
-  currentRanking.map((id,i)=>{
-   const prev=lastRanking.indexOf(id);
-   let cls='rank-row';
-   if(prev!=-1){if(prev>i)cls+=' rank-up';if(prev<i)cls+=' rank-down'}
-   return `<div class="${cls}">${i+1}. ${ranking[i].name} – ⭐ ${score(ranking[i])}</div>`;
-  }).join('');
- lastRanking=currentRanking;
+  const ranking=[...data.teams].sort((a,b)=>teamScore(b)-teamScore(a));
+  const winnerId = ranking[0]?.id;
 
- document.getElementById('prizes').innerHTML=`
-  <div class="prize">🥇 ${ranking[0]?.name||'-'}<br>🏆 Coppa</div>
-  <div class="prize">🥈 ${ranking[1]?.name||'-'}<br>🥈 Medaglie</div>
-  <div class="prize">🥉 ${ranking[2]?.name||'-'}<br>🍹 Aperitivo</div>`;
+  document.getElementById("ranking").innerHTML =
+    ranking.map((t,i)=>`<div>${i+1}. ${t.name} – ⭐ ${teamScore(t)}</div>`).join("");
+
+  data.teams.forEach(t=>{
+    teamsEl.innerHTML+=`
+      <div class="team ${t.id===winnerId?'winner':''}">
+        <h3>${t.name}</h3>
+
+        <input type="file" accept="image/*" onchange="uploadMedia(${t.id},'photo',this)">
+        <input type="file" accept="video/*" onchange="uploadMedia(${t.id},'video',this)">
+
+        ${t.media.map(m=>{
+          const avg = m.count ? (m.total/m.count).toFixed(1) : '—';
+          const voted = votes[m.id];
+          return `
+          <div class="media">
+            ${m.type==="photo"
+              ? `<img src="${m.src}      : `${m.src}</video>`}
+            <div>Media voto: ⭐ ${avg}</div>
+            ${voted
+              ? `<div>✅ Hai votato: ${voted}/10</div>`
+              : `<div class="stars">${
+                Array.from({length:10},(_,i)=>`
+                  <button onclick="vote(${m.id},${i+1})">${i<5?'⭐':'🌟'}</button>
+                `).join('')
+              }</div>`
+            }
+            <button class="delete-btn" onclick="deleteMedia(${t.id},${m.id})">🗑️ Elimina</button>
+          </div>`;
+        }).join("")}
+      </div>
+    `;
+  });
 }
 
-/* INIT */
-document.getElementById('soundBtn').onclick=toggleSound;
 updateSoundBtn();
 render();
 </script>
 
 </body>
 </html>
-``
