@@ -758,6 +758,170 @@ main {
 .rs-msg   { font-size: .95rem; opacity: .8; line-height: 1.65; }
 
 /* ═══════════════════════════════════════
+   BACK TO TOP BUTTON
+═══════════════════════════════════════ */
+.back-top {
+  position:fixed; bottom:168px; right:16px; z-index:90;
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(1,10,36,.88); backdrop-filter:blur(12px);
+  border:1px solid var(--border); color:var(--foam);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:1.1rem;
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
+  transition:transform .2s, opacity .3s, box-shadow .2s;
+  opacity:0; pointer-events:none;
+  touch-action:manipulation;
+}
+.back-top.vis { opacity:1; pointer-events:all; }
+.back-top:hover { transform:scale(1.12) translateY(-2px); box-shadow:0 6px 26px rgba(0,180,216,.3); }
+
+/* ═══════════════════════════════════════
+   STICKY BOTTOM NAV (mobile)
+═══════════════════════════════════════ */
+.sec-nav {
+  position:sticky; top:52px; z-index:99;
+  background:rgba(1,10,36,.82); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;
+  white-space:nowrap;
+}
+.sec-nav::-webkit-scrollbar { display:none; }
+.sec-nav { padding:8px 10px; display:flex; gap:6px; flex-wrap:nowrap; justify-content:flex-start; }
+.sec-pill { flex-shrink:0; }
+
+/* ═══════════════════════════════════════
+   GIRONE FILTER PILLS
+═══════════════════════════════════════ */
+.girone-filters {
+  display:flex; gap:7px; flex-wrap:wrap; margin-bottom:18px; align-items:center;
+}
+.gf-lbl { font-size:.72rem; font-weight:800; opacity:.5; text-transform:uppercase; letter-spacing:1px; }
+.gf-pill {
+  background:rgba(255,255,255,.08); border:1.5px solid rgba(255,255,255,.15);
+  border-radius:20px; padding:5px 14px; font-size:.78rem; font-weight:800;
+  cursor:pointer; color:var(--white); transition:all .2s;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+}
+.gf-pill:hover { background:rgba(0,180,216,.22); border-color:var(--sky); }
+.gf-pill.on    { background:linear-gradient(135deg,var(--sky),var(--ocean)); border-color:transparent; box-shadow:0 2px 10px rgba(0,119,182,.4); }
+
+/* ═══════════════════════════════════════
+   TEAM BADGES
+═══════════════════════════════════════ */
+.tcard-badges { display:flex; gap:4px; flex-wrap:wrap; padding:4px 14px 0; }
+.tbadge {
+  font-size:.65rem; font-weight:900; padding:2px 8px; border-radius:20px;
+  display:inline-flex; align-items:center; gap:3px; white-space:nowrap;
+}
+.tbadge.champ  { background:linear-gradient(135deg,#ffd166,#ffb703); color:var(--deep); }
+.tbadge.hot    { background:linear-gradient(135deg,#ff6b6b,#ee5a24); color:#fff; }
+.tbadge.newbie { background:linear-gradient(135deg,#52b788,#1b4332); color:#fff; }
+.tbadge.leader { background:linear-gradient(135deg,#90e0ef,#0077b6); color:#fff; }
+
+/* ═══════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════ */
+.lightbox {
+  display:none; position:fixed; inset:0; z-index:700;
+  background:rgba(0,0,0,.96); backdrop-filter:blur(8px);
+  align-items:center; justify-content:center; flex-direction:column;
+}
+.lightbox.open { display:flex; }
+.lb-img-wrap { position:relative; max-width:92vw; max-height:82vh; display:flex; align-items:center; justify-content:center; }
+.lb-img-wrap img { max-width:92vw; max-height:78vh; object-fit:contain; border-radius:12px; box-shadow:0 20px 80px rgba(0,0,0,.8); display:block; }
+.lb-close { position:fixed; top:16px; right:18px; font-size:1.8rem; cursor:pointer; color:rgba(255,255,255,.6); background:rgba(0,0,0,.4); border:none; border-radius:50%; width:42px; height:42px; display:flex; align-items:center; justify-content:center; transition:color .2s; z-index:710; }
+.lb-close:hover { color:#fff; }
+.lb-nav { position:fixed; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.45); border:none; color:#fff; font-size:1.8rem; width:46px; height:46px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; z-index:710; }
+.lb-nav:hover { background:rgba(0,0,0,.75); }
+.lb-nav.prev { left:12px; }
+.lb-nav.next { right:12px; }
+.lb-counter { color:rgba(255,255,255,.45); font-size:.8rem; font-weight:700; margin-top:12px; }
+.lb-caption-txt { color:rgba(255,255,255,.65); font-size:.85rem; margin-top:5px; font-weight:600; }
+/* Make media previews clickable */
+.m-img { cursor:zoom-in; }
+
+/* ═══════════════════════════════════════
+   ADMIN PANEL
+═══════════════════════════════════════ */
+.admin-fab {
+  position:fixed; bottom:214px; right:16px; z-index:90;
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(1,10,36,.88); backdrop-filter:blur(12px);
+  border:1px solid rgba(255,209,102,.3);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:1.1rem;
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
+  transition:transform .2s, box-shadow .2s;
+  touch-action:manipulation;
+}
+.admin-fab:hover { transform:scale(1.1); box-shadow:0 6px 26px rgba(255,209,102,.25); }
+.admin-badge { position:absolute; top:-3px; right:-3px; width:14px; height:14px; background:var(--coral); border-radius:50%; font-size:.6rem; display:flex; align-items:center; justify-content:center; font-weight:900; border:1.5px solid var(--bg); display:none; }
+.admin-badge.has { display:flex; }
+.pending-item { background:rgba(255,255,255,.06); border-radius:12px; overflow:hidden; margin-bottom:12px; border:1px solid rgba(255,255,255,.1); }
+.pending-img  { width:100%; max-height:160px; object-fit:cover; display:block; }
+.pending-meta { padding:10px 12px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.pending-info { font-size:.82rem; font-weight:700; }
+.pending-acts { display:flex; gap:8px; }
+.btn-approve  { background:linear-gradient(135deg,#52b788,#1b4332); color:#fff; border:none; border-radius:8px; padding:6px 14px; font-family:'Nunito',sans-serif; font-weight:800; font-size:.78rem; cursor:pointer; }
+.btn-reject   { background:linear-gradient(135deg,#ff4757,#b71c1c); color:#fff; border:none; border-radius:8px; padding:6px 14px; font-family:'Nunito',sans-serif; font-weight:800; font-size:.78rem; cursor:pointer; }
+.admin-pw-wrap { display:flex; flex-direction:column; gap:10px; }
+.admin-pw-wrap input { background:rgba(255,255,255,.1); border:1.5px solid rgba(255,255,255,.2); border-radius:11px; padding:12px 14px; color:#fff; font-family:'Nunito',sans-serif; font-size:.96rem; outline:none; }
+.admin-pw-wrap input:focus { border-color:var(--foam); }
+.admin-pw-err { color:var(--coral); font-size:.8rem; display:none; }
+
+/* ═══════════════════════════════════════
+   WEATHER WIDGET
+═══════════════════════════════════════ */
+.weather-widget {
+  background:rgba(0,0,0,.22); border-radius:16px; padding:16px;
+  border:1px solid rgba(144,224,239,.15); margin-top:18px;
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.ww-icon  { font-size:2.4rem; flex-shrink:0; }
+.ww-info  { flex:1; min-width:140px; }
+.ww-city  { font-weight:900; font-size:.85rem; opacity:.6; text-transform:uppercase; letter-spacing:.8px; }
+.ww-temp  { font-family:'Pacifico',cursive; font-size:1.8rem; color:var(--foam); line-height:1.1; }
+.ww-desc  { font-size:.82rem; opacity:.7; font-weight:700; margin-top:2px; }
+.ww-extra { font-size:.72rem; opacity:.5; margin-top:3px; }
+.ww-days  { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+.ww-day   { background:rgba(255,255,255,.06); border-radius:10px; padding:6px 10px; text-align:center; font-size:.72rem; font-weight:800; min-width:52px; }
+.ww-day-dt { opacity:.5; margin-bottom:3px; }
+.ww-day-ic { font-size:1.1rem; display:block; margin:2px 0; }
+.ww-loading { font-size:.85rem; opacity:.5; }
+
+/* ═══════════════════════════════════════
+   SPINNER (registration button)
+═══════════════════════════════════════ */
+.btn-spinner {
+  display:inline-block; width:16px; height:16px;
+  border:2.5px solid rgba(255,255,255,.3); border-top-color:#fff;
+  border-radius:50%; animation:spin .7s linear infinite; vertical-align:middle; margin-right:6px;
+}
+
+/* ═══════════════════════════════════════
+   TABLE RESPONSIVE WRAPPER
+═══════════════════════════════════════ */
+.table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:12px; }
+.table-wrap::-webkit-scrollbar { height:4px; }
+.table-wrap::-webkit-scrollbar-thumb { background:var(--sky); border-radius:2px; }
+.sched-table { min-width:400px; }
+.lb-grid     { overflow-x:visible; }
+@media(max-width:500px) {
+  #lbGridFoto, #lbGridVideo { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
+}
+
+/* ═══════════════════════════════════════
+   CONTRAST FIXES
+═══════════════════════════════════════ */
+.lb-team  { color:#ffe066; }  /* deeper sand, more readable */
+.sec-sub  { opacity:.62; }
+.wt-line1 { /* already high contrast – keep */ }
+.he-text  { text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.he-date  { color:#a8edff; font-weight:900; }
+.hero-sub { color:rgba(255,255,255,.82); opacity:1; }
+.rate-lbl, .rating-label { color:rgba(255,255,255,.72); opacity:1; }
+
+/* ═══════════════════════════════════════
    DARK / LIGHT MODE
 ═══════════════════════════════════════ */
 body.light {
@@ -1140,6 +1304,16 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
     <div class="section-title">🏐 Le Squadre</div>
     <button class="btn-add" id="btnAdd" onclick="openAdd()">➕ Aggiungi Squadra</button>
   </div>
+  <!-- GIRONE FILTERS -->
+  <div class="girone-filters" id="gironeFilters">
+    <span class="gf-lbl">Filtro:</span>
+    <button class="gf-pill on" data-girone="all"  onclick="filterTeams('all',this)">🏐 Tutte</button>
+    <button class="gf-pill"    data-girone="A"    onclick="filterTeams('A',this)">Girone A</button>
+    <button class="gf-pill"    data-girone="B"    onclick="filterTeams('B',this)">Girone B</button>
+    <button class="gf-pill"    data-girone="C"    onclick="filterTeams('C',this)">Girone C</button>
+    <button class="gf-pill"    data-girone="D"    onclick="filterTeams('D',this)">Girone D</button>
+    <button class="gf-pill"    data-girone="none" onclick="filterTeams('none',this)">Senza girone</button>
+  </div>
   <div class="teams-grid" id="tGrid"></div>
 </main>
 
@@ -1211,11 +1385,15 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
     <div class="sec-title">📍 Dove Siamo</div>
     <div class="sec-sub">Via della Botte, 7 – Fellegara (RE) · Campi da Beach Volley</div>
     <div class="map-iframe-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.0!2d10.6!3d44.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia+della+Botte+7+Fellegara!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.0!2d10.6!3d44.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia+della+Botte+7+Fellegara!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" allowfullscreen loading="lazy" title="Mappa campi da gioco Fanta Splash Volley"></iframe>
     </div>
-    <a href="https://www.google.com/maps/search/Via+della+Botte+7+Fellegara" target="_blank" class="dl-btn">
+    <a href="https://www.google.com/maps/search/Via+della+Botte+7+Fellegara" target="_blank" rel="noopener" class="dl-btn" aria-label="Apri posizione in Google Maps">
       🗺️ Apri in Google Maps
     </a>
+    <!-- WEATHER -->
+    <div class="weather-widget" id="weatherWidget">
+      <div class="ww-loading">🌤️ Caricamento meteo Fellegara…</div>
+    </div>
   </div>
 </div>
 
@@ -1228,6 +1406,7 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
       </div>
       <button class="dl-btn" style="margin-top:0;" onclick="dlRegolamento()">📄 Scarica Regolamento</button>
     </div>
+    <div class="table-wrap">
     <table class="sched-table">
       <thead><tr><th>Orario</th><th>Fase</th><th>Dettaglio</th></tr></thead>
       <tbody>
@@ -1243,6 +1422,7 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
         <tr><td>Sab 19 · 18:30</td><td>🎊</td><td>Festa di chiusura</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 </div>
 <div id="secIscrizione" style="max-width:1240px;margin:0 auto;padding:0 12px 80px;position:relative;z-index:2;">
@@ -1312,7 +1492,7 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
 
       <button type="submit" class="reg-submit" id="regSubmitBtn">
         <span id="regBtnText">🚀 Iscriviti al Torneo</span>
-        <span id="regBtnLoad" style="display:none;">⏳ Invio in corso…</span>
+        <span id="regBtnLoad" style="display:none;"><span class="btn-spinner"></span>Invio in corso…</span>
       </button>
     </form>
 
@@ -1334,6 +1514,16 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
       <label for="inp-name">Nome Squadra</label>
       <input type="text" id="inp-name" placeholder="Es. Beach Warriors…" autocomplete="off"
              onkeydown="if(event.key==='Enter'){event.preventDefault();doAdd();}">
+    </div>
+    <div class="form-row">
+      <label>Girone (opzionale)</label>
+      <select id="inp-girone" style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.18);border-radius:11px;padding:12px 14px;color:#fff;font-family:Nunito,sans-serif;font-size:.96rem;font-weight:600;outline:none;width:100%;-webkit-appearance:none;cursor:pointer;">
+        <option value="">Nessun girone</option>
+        <option value="A">Girone A</option>
+        <option value="B">Girone B</option>
+        <option value="C">Girone C</option>
+        <option value="D">Girone D</option>
+      </select>
     </div>
     <div class="form-row">
       <div class="pick-lbl">Scegli Stemma</div>
@@ -1407,6 +1597,50 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Visualizzatore foto">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="Chiudi">✕</button>
+  <button class="lb-nav prev" onclick="lbNav(-1)" aria-label="Foto precedente">‹</button>
+  <div class="lb-img-wrap">
+    <img id="lbImg" src="" alt="Foto squadra in visualizzazione ingrandita">
+  </div>
+  <button class="lb-nav next" onclick="lbNav(1)" aria-label="Foto successiva">›</button>
+  <div class="lb-counter" id="lbCounter"></div>
+  <div class="lb-caption-txt" id="lbCaption"></div>
+</div>
+
+<!-- ADMIN FAB -->
+<button class="admin-fab" id="adminFab" onclick="openAdmin()" title="Area Admin">
+  🔐<span class="admin-badge" id="adminBadge">0</span>
+</button>
+
+<!-- MODAL: ADMIN PANEL -->
+<div class="overlay" id="ovAdmin" onclick="ocl(event,'ovAdmin')">
+  <div class="modal" style="max-width:520px;">
+    <h2>🔐 Area Admin</h2>
+    <!-- login -->
+    <div id="adminLogin">
+      <p style="opacity:.68;font-size:.85rem;margin-bottom:14px;">Inserisci la password per accedere al pannello di moderazione.</p>
+      <div class="admin-pw-wrap">
+        <input type="password" id="adminPwInp" placeholder="Password admin…" onkeydown="if(event.key==='Enter')checkAdminPw()">
+        <div class="admin-pw-err" id="adminPwErr">❌ Password errata</div>
+        <button class="btn-ok" onclick="checkAdminPw()">🔓 Accedi</button>
+      </div>
+    </div>
+    <!-- panel (shown after login) -->
+    <div id="adminPanel" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <span style="font-size:.82rem;opacity:.6;">Foto e video in attesa di approvazione</span>
+        <button class="btn-del-sm" onclick="adminLogout()">🚪 Esci</button>
+      </div>
+      <div id="pendingList"><div style="opacity:.38;font-size:.85rem;padding:10px;">Nessun contenuto in attesa.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su">↑</button>
+
 <!-- GRAZIE -->
 <div class="gz-ov" id="gzOv" onclick="closeGz()">
   <div class="cft-wrap" id="cftWrap"></div>
@@ -1465,6 +1699,7 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
 const EMOJIS=['🏐','🌊','⚡','🔥','🌴','🦈','🐬','🌞','🏄','💪','🦁','🐯','🦅','🌺','🎯','🏆','🦋','🐉','🌈','⭐','🎪','🎨','🏋️','🤸','🧨','🏅','🎖️','🌻','🦊','🐺','🦝','🐸'];
 const CFT=['#ffd166','#ff6b6b','#90e0ef','#00b4d8','#52b788','#fff','#ffb703','#48cae4'];
 const EMAIL='mirkocavecchi@gmail.com';
+const ADMIN_PW = 'splashAdmin2024';   // ← cambia questa password
 const K_TEAMS   ='fsv6_teams';
 const K_MEDIA   ='fsv6_media';
 const K_VOTES   ='fsv6_votes';
@@ -1474,6 +1709,7 @@ const K_MATCHES ='fsv6_matches';
 const K_PLAYOFF ='fsv6_playoff';
 const K_ROSTER  ='fsv6_roster';
 const K_TSTATS  ='fsv6_tstats';
+const K_PENDING ='fsv6_pending';      // media awaiting admin approval
 const TOURNAMENT_DATE = new Date('2026-07-18T09:00:00');
 
 /* ══════════════════════════════════
@@ -1482,18 +1718,23 @@ const TOURNAMENT_DATE = new Date('2026-07-18T09:00:00');
 let _teams   = {};
 let _media   = {};
 let _myVotes = {};
-let _comments= {};   // { mediaId: [{nick,text,ts}] }
-let _matches = {};   // { matchId: {girone,t1,t2,s1,s2} }
-let _playoff = {};   // bracket rounds
-let _roster  = {};   // { teamId: [{name,role}] }
-let _tstats  = {};   // { teamId: {w,l,pts} }
-let soundOn  = false;
-let audioCtx = null;
+let _comments= {};
+let _matches = {};
+let _playoff = {};
+let _roster  = {};
+let _tstats  = {};
+let _pending = {};   // { id: {teamId,teamName,type,src,createdAt} }
+let soundOn   = false;
+let audioCtx  = null;
 let lightMode = false;
-let addEmoji = EMOJIS[0], addImg=null;
-let editEmoji= null,      editImg=null;
-let prevLbF  = null, prevLbV=null;
-let lwIdx    = 0, lwTimer=null;
+let adminLoggedIn = false;
+let activeFilter  = 'all';
+let lbImages  = [];
+let lbCurrent = 0;
+let addEmoji  = EMOJIS[0], addImg=null;
+let editEmoji = null,       editImg=null;
+let prevLbF   = null, prevLbV=null;
+let lwIdx     = 0, lwTimer=null;
 
 /* ══════════════════════════════════
    PERSISTENCE  (localStorage)
@@ -1512,6 +1753,7 @@ function load(){
   _playoff =JSON.parse(localStorage.getItem(K_PLAYOFF)  ||'{}');
   _roster  =JSON.parse(localStorage.getItem(K_ROSTER)   ||'{}');
   _tstats  =JSON.parse(localStorage.getItem(K_TSTATS)   ||'{}');
+  _pending =JSON.parse(localStorage.getItem(K_PENDING)  ||'{}');
 }
 function saveTeams()   { localStorage.setItem(K_TEAMS,   JSON.stringify(_teams)); }
 function saveMedia()   { localStorage.setItem(K_MEDIA,   JSON.stringify(_media)); }
@@ -1521,6 +1763,7 @@ function saveMatches() { localStorage.setItem(K_MATCHES, JSON.stringify(_matches
 function savePlayoff() { localStorage.setItem(K_PLAYOFF, JSON.stringify(_playoff)); }
 function saveRoster()  { localStorage.setItem(K_ROSTER,  JSON.stringify(_roster)); }
 function saveTstats()  { localStorage.setItem(K_TSTATS,  JSON.stringify(_tstats)); }
+function savePending() { localStorage.setItem(K_PENDING, JSON.stringify(_pending)); }
 
 /* ══════════════════════════════════
    SOUND
@@ -1661,19 +1904,19 @@ function doAdd(){
   const name=document.getElementById('inp-name').value.trim();
   if(!name){
     const ni=document.getElementById('inp-name');
-    ni.style.borderColor='var(--coral)';
-    ni.focus();
-    setTimeout(()=>ni.style.borderColor='',2000);
-    return;
+    ni.style.borderColor='var(--coral)'; ni.focus();
+    setTimeout(()=>ni.style.borderColor='',2000); return;
   }
   const logo    = addImg || addEmoji || EMOJIS[0];
   const logoType= addImg ? 'img' : 'emoji';
+  const girone  = document.getElementById('inp-girone').value || '';
   const id      = 't'+Date.now()+Math.random().toString(36).slice(2,6);
-  _teams[id]    = { name, logo, logoType, createdAt:Date.now() };
+  _teams[id]    = { name, logo, logoType, girone, createdAt:Date.now() };
   saveTeams();
   cm('ovAdd');
   renderTeams();
   renderLeaderboard();
+  renderGironi();
 }
 
 /* ══════════════════════════════════
@@ -1747,16 +1990,18 @@ async function handleUpload(tid,type,input){
       src=await new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);});
     }
     const mid='m'+Date.now()+Math.random().toString(36).slice(2,6);
-    _media[mid]={ teamId:tid, teamName:t.name, type, src, avgRating:0, totalRating:0, voteCount:0, createdAt:Date.now() };
+    // Route to pending queue for admin approval
+    _pending[mid]={ teamId:tid, teamName:t.name, type, src, createdAt:Date.now() };
     done++;
     if(pf) pf.style.width=(done/files.length*100)+'%';
     sendEmail(t.name,type);
   }
-  saveMedia();
+  savePending();
+  updateAdminBadge();
   setTimeout(()=>{ if(pb)pb.style.display='none'; if(pf)pf.style.width='0%'; },900);
   input.value='';
+  toast('⏳ Contenuto inviato – in attesa di approvazione admin');
   renderTeams();
-  renderLeaderboard();
 }
 
 /* ══════════════════════════════════
@@ -1859,26 +2104,53 @@ function scheduleLeaderboard(){
 ══════════════════════════════════ */
 function renderTeams(){
   const grid=document.getElementById('tGrid'); if(!grid)return;
-  // save which tab is active
   const activeTabs={};
   Object.keys(_teams).forEach(tid=>{
     const tv=document.getElementById('tv-'+tid);
     if(tv&&tv.classList.contains('on')) activeTabs[tid]='video';
   });
   grid.innerHTML='';
-  const arr=Object.entries(_teams).map(([id,t])=>({id,...t})).sort((a,b)=>a.createdAt-b.createdAt);
+  let arr=Object.entries(_teams).map(([id,t])=>({id,...t})).sort((a,b)=>a.createdAt-b.createdAt);
+  // apply girone filter
+  if(activeFilter==='none') arr=arr.filter(t=>!t.girone);
+  else if(activeFilter!=='all') arr=arr.filter(t=>t.girone===activeFilter);
+  // show filter row only when ≥4 teams
+  const filterRow=document.getElementById('gironeFilters');
+  if(filterRow) filterRow.style.display=Object.keys(_teams).length>=4?'flex':'none';
   if(!arr.length){
-    grid.innerHTML=`<div class="empty-b"><div class="eico">🏐</div><p>Nessuna squadra ancora.<br>Clicca <strong>"Aggiungi Squadra"</strong> per iniziare!</p></div>`;
+    grid.innerHTML=`<div class="empty-b"><div class="eico">🏐</div><p>${activeFilter!=='all'?'Nessuna squadra in questo girone.<br>Prova un altro filtro.':'Nessuna squadra ancora.<br>Clicca <strong>"Aggiungi Squadra"</strong>!'}</p></div>`;
     return;
   }
-  arr.forEach(t=>{ const c=buildCard(t); grid.appendChild(c); });
-  // restore tabs
+  arr.forEach(t=>{ grid.appendChild(buildCard(t)); });
   Object.keys(activeTabs).forEach(tid=>swTab(tid,'video'));
 }
 
 function logoHtml(t){
-  if(t.logoType==='img') return`<img src="${t.logo}" style="width:100%;height:100%;object-fit:cover;" alt="">`;
-  return`<span>${t.logo}</span>`;
+  if(t.logoType==='img') return`<img src="${t.logo}" style="width:100%;height:100%;object-fit:cover;" alt="Logo squadra ${esc(t.name)}">`;
+  return`<span aria-label="Stemma squadra">${t.logo}</span>`;
+}
+
+/* ── BADGES ── */
+function teamBadges(t){
+  const allMedia=Object.entries(_media).map(([id,m])=>({id,...m}));
+  const myMedia=allMedia.filter(m=>m.teamId===t.id);
+  const myAvg=myMedia.length ? myMedia.reduce((s,m)=>s+(m.avgRating||0),0)/myMedia.length : 0;
+  const allAvgs=Object.entries(_teams).map(([id])=>{
+    const tm=allMedia.filter(m=>m.teamId===id);
+    return tm.length ? tm.reduce((s,m)=>s+(m.avgRating||0),0)/tm.length : 0;
+  });
+  const maxAvg=Math.max(...allAvgs,0);
+  const isHot=myAvg>0&&myAvg>=maxAvg&&allAvgs.filter(a=>a===maxAvg).length===1;
+  const isNew=(Date.now()-t.createdAt)<172800000;
+  const stats=_tstats[t.id]||{pts:0};
+  const maxPts=Math.max(...Object.values(_tstats).map(s=>s.pts||0),0);
+  const isLeader=stats.pts>0&&stats.pts>=maxPts;
+  let html='';
+  if(t.girone)  html+=`<span class="tbadge champ">Girone ${esc(t.girone)}</span>`;
+  if(isLeader)  html+=`<span class="tbadge leader">🏆 Leader</span>`;
+  if(isHot)     html+=`<span class="tbadge hot">🔥 Più Votati</span>`;
+  if(isNew)     html+=`<span class="tbadge newbie">🆕 New Entry</span>`;
+  return html?`<div class="tcard-badges">${html}</div>`:'';
 }
 
 function buildCard(t){
@@ -1890,6 +2162,7 @@ function buildCard(t){
   const stats=_tstats[t.id]||{w:0,l:0,pts:0};
   const roster=_roster[t.id]||[];
   div.innerHTML=`
+    ${teamBadges(t)}
     <div class="tcard-head">
       <button class="tcard-logo" onclick="openEditLogo('${t.id}')" title="Modifica stemma">
         ${logoHtml(t)}
@@ -1962,8 +2235,8 @@ function buildMediaItem(m,type,tid){
   const vc   =m.voteCount||0;
   const tn   =(_teams[tid]&&_teams[tid].name)||m.teamName||'';
   const prev =type==='foto'
-    ?`<img class="m-img" src="${m.src}" loading="lazy" alt="">`
-    :`<video class="m-vid" src="${m.src}" controls playsinline preload="metadata"></video>`;
+    ?`<img class="m-img" src="${m.src}" loading="lazy" alt="Foto della squadra ${esc(tn)}" onclick="openLightbox('${m.id}')">`
+    :`<video class="m-vid" src="${m.src}" controls playsinline preload="metadata" aria-label="Video della squadra ${esc(tn)}"></video>`;
   let rHtml;
   if(voted){
     rHtml=`<div class="rate-row">
@@ -2411,6 +2684,180 @@ function dlRegolamento(){
 }
 
 /* ══════════════════════════════════
+   GIRONE FILTER
+══════════════════════════════════ */
+function filterTeams(g, btn){
+  activeFilter=g;
+  document.querySelectorAll('.gf-pill').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  renderTeams();
+}
+
+/* ══════════════════════════════════
+   BACK TO TOP
+══════════════════════════════════ */
+window.addEventListener('scroll',()=>{
+  const bt=document.getElementById('backTop');
+  if(bt) bt.classList.toggle('vis', window.scrollY>400);
+},{passive:true});
+
+/* ══════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════ */
+function buildLbImages(){
+  lbImages=Object.entries(_media)
+    .map(([id,m])=>({id,...m}))
+    .filter(m=>m.type==='foto')
+    .sort((a,b)=>a.createdAt-b.createdAt);
+}
+function openLightbox(mediaId){
+  buildLbImages();
+  const idx=lbImages.findIndex(m=>m.id===mediaId);
+  lbCurrent=idx>=0?idx:0;
+  lbRender();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function lbNav(dir){
+  if(!lbImages.length)return;
+  lbCurrent=(lbCurrent+dir+lbImages.length)%lbImages.length;
+  lbRender();
+}
+function lbRender(){
+  const m=lbImages[lbCurrent];
+  if(!m)return;
+  const img=document.getElementById('lbImg');
+  img.src=m.src;
+  img.alt='Foto di '+(m.teamName||'squadra');
+  document.getElementById('lbCounter').textContent=(lbCurrent+1)+' / '+lbImages.length;
+  document.getElementById('lbCaption').textContent='📷 '+(m.teamName||'');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{
+  const lb=document.getElementById('lightbox');
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='ArrowLeft')  lbNav(-1);
+  if(e.key==='ArrowRight') lbNav(1);
+  if(e.key==='Escape')     closeLightbox();
+});
+
+/* ══════════════════════════════════
+   ADMIN PANEL
+══════════════════════════════════ */
+function openAdmin(){
+  document.getElementById('ovAdmin').classList.add('open');
+  if(adminLoggedIn){ renderPending(); }
+}
+function checkAdminPw(){
+  const v=document.getElementById('adminPwInp').value;
+  const err=document.getElementById('adminPwErr');
+  if(v===ADMIN_PW){
+    adminLoggedIn=true;
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+    err.style.display='none';
+    renderPending();
+  } else {
+    err.style.display='block';
+    document.getElementById('adminPwInp').value='';
+  }
+}
+function adminLogout(){
+  adminLoggedIn=false;
+  document.getElementById('adminLogin').style.display='block';
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('adminPwInp').value='';
+  cm('ovAdmin');
+}
+function renderPending(){
+  const list=document.getElementById('pendingList');
+  if(!list)return;
+  const items=Object.entries(_pending);
+  const badge=document.getElementById('adminBadge');
+  if(badge){ badge.textContent=items.length; badge.classList.toggle('has',items.length>0); }
+  if(!items.length){
+    list.innerHTML='<div style="opacity:.38;font-size:.85rem;padding:10px;">✅ Nessun contenuto in attesa.</div>';
+    return;
+  }
+  list.innerHTML=items.map(([pid,m])=>`
+    <div class="pending-item">
+      ${m.type==='foto'
+        ?`<img class="pending-img" src="${m.src}" alt="Contenuto in attesa – ${esc(m.teamName||'')}" loading="lazy">`
+        :`<video class="pending-img" src="${m.src}" muted controls style="height:140px;object-fit:cover;width:100%;display:block;"></video>`}
+      <div class="pending-meta">
+        <div class="pending-info">${m.type==='foto'?'📷':'🎬'} <strong>${esc(m.teamName||'')}</strong> · ${new Date(m.createdAt).toLocaleString('it-IT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="pending-acts">
+          <button class="btn-approve" onclick="approveMedia('${pid}')">✅ Approva</button>
+          <button class="btn-reject"  onclick="rejectMedia('${pid}')">❌ Rifiuta</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function approveMedia(pid){
+  const m=_pending[pid]; if(!m)return;
+  _media[pid]={...m, avgRating:0, totalRating:0, voteCount:0};
+  delete _pending[pid];
+  saveMedia(); savePending();
+  renderPending(); renderTeams(); renderLeaderboard(); buildLiveWall();
+  toast('✅ Contenuto approvato e pubblicato!');
+}
+function rejectMedia(pid){
+  delete _pending[pid];
+  savePending(); renderPending();
+  toast('🗑️ Contenuto rifiutato.');
+}
+/* update admin badge count on load */
+function updateAdminBadge(){
+  const cnt=Object.keys(_pending).length;
+  const badge=document.getElementById('adminBadge');
+  if(badge){ badge.textContent=cnt; badge.classList.toggle('has',cnt>0); }
+}
+
+/* ══════════════════════════════════
+   WEATHER WIDGET
+══════════════════════════════════ */
+const WX_ICONS={sunny:'☀️','partly cloudy':'⛅',cloudy:'☁️',overcast:'☁️',rain:'🌧️',drizzle:'🌦️',thunder:'⛈️',snow:'❄️',fog:'🌫️',mist:'🌫️',sleet:'🌨️',blizzard:'❄️',wind:'💨'};
+function wxIcon(desc){
+  const d=desc.toLowerCase();
+  for(const[k,v]of Object.entries(WX_ICONS)) if(d.includes(k)) return v;
+  return'🌤️';
+}
+async function loadWeather(){
+  const el=document.getElementById('weatherWidget'); if(!el)return;
+  try{
+    const r=await fetch('https://wttr.in/Fellegara,Italy?format=j1',{signal:AbortSignal.timeout(6000)});
+    if(!r.ok)throw new Error();
+    const d=await r.json();
+    const cur=d.current_condition[0];
+    const days=d.weather.slice(0,3);
+    const ico=wxIcon(cur.weatherDesc[0].value);
+    const dayHtml=days.map(dy=>{
+      const dt=new Date(dy.date);
+      const di=wxIcon(dy.hourly[4]?.weatherDesc[0]?.value||'');
+      return`<div class="ww-day" role="img" aria-label="Meteo ${dt.toLocaleDateString('it-IT',{weekday:'long'})}">
+        <div class="ww-day-dt">${dt.toLocaleDateString('it-IT',{weekday:'short',day:'numeric'})}</div>
+        <span class="ww-day-ic">${di}</span>
+        <div>${dy.maxtempC}°<span style="opacity:.5">/${dy.mintempC}°</span></div>
+      </div>`;
+    }).join('');
+    el.innerHTML=`
+      <div class="ww-icon" role="img" aria-label="Meteo attuale: ${cur.weatherDesc[0].value}">${ico}</div>
+      <div class="ww-info">
+        <div class="ww-city">Fellegara (RE) · Ora</div>
+        <div class="ww-temp">${cur.temp_C}°C</div>
+        <div class="ww-desc">${cur.weatherDesc[0].value}</div>
+        <div class="ww-extra">💧 Umidità ${cur.humidity}% &nbsp;·&nbsp; 💨 ${cur.windspeedKmph} km/h</div>
+      </div>
+      <div class="ww-days">${dayHtml}</div>`;
+  }catch{
+    el.innerHTML='<div class="ww-loading">🌤️ Meteo temporaneamente non disponibile</div>';
+  }
+}
+
+/* ══════════════════════════════════
    BOOT
 ══════════════════════════════════ */
 load();
@@ -2420,6 +2867,8 @@ renderGironi();
 buildLiveWall();
 startCountdown();
 scheduleLeaderboard();
+updateAdminBadge();
+loadWeather();
 </script>
 </body>
 </html>
