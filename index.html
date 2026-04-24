@@ -176,8 +176,9 @@ canvas#pts { position:fixed; inset:0; z-index:0; pointer-events:none; }
 ═══════════════════════════════════════ */
 main {
   max-width:1240px; margin:0 auto;
-  padding:28px 12px 60px;
+  padding:46px 12px 60px;
   position:relative; z-index:2;
+  scroll-margin-top:140px;
 }
 .section-hdr {
   display:flex; align-items:center; justify-content:space-between;
@@ -524,20 +525,7 @@ main {
 .cft      { position:absolute; top:-10px; animation:cfall linear forwards; }
 @keyframes cfall { 0%{opacity:1;transform:translateY(0) rotate(0);} 100%{opacity:.15;transform:translateY(108vh) rotate(var(--r)) translateX(var(--dx));} }
 
-/* ═══════════════════════════════════════
-   SOUND BTN & SYNC DOT
-═══════════════════════════════════════ */
-.snd-btn {
-  position:fixed; bottom:20px; right:16px; z-index:90;
-  width:44px; height:44px; border-radius:50%;
-  background:rgba(1,10,36,.88); backdrop-filter:blur(12px);
-  border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
-  cursor:pointer; font-size:1.2rem;
-  box-shadow:0 4px 20px rgba(0,0,0,.35);
-  transition:transform .2s, box-shadow .2s;
-  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
-}
-.snd-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(0,180,216,.3); }
+
 .sync-dot {
   position:fixed; top:60px; right:14px; z-index:90;
   width:10px; height:10px; border-radius:50%;
@@ -1042,7 +1030,8 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
 ═══════════════════════════════════════ */
 .sec-nav {
   display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
-  padding:18px 12px 0; position:relative; z-index:2;
+  padding:18px 12px 20px; margin-bottom:30px;
+  position:relative; z-index:2;
 }
 .sec-pill {
   background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);
@@ -1195,6 +1184,110 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
 }
 .notif-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(255,183,3,.3); }
 .notif-btn.granted { border-color:rgba(82,183,136,.4); }
+
+/* ═══════════════════════════════════════
+   TEAM SEARCH BAR
+═══════════════════════════════════════ */
+.search-wrap {
+  position:relative; margin-bottom:16px;
+}
+.search-ico {
+  position:absolute; left:14px; top:50%; transform:translateY(-50%);
+  font-size:1.1rem; opacity:.5; pointer-events:none;
+}
+.team-search {
+  width:100%;
+  background:rgba(255,255,255,.1);
+  border:1.5px solid rgba(255,255,255,.18);
+  border-radius:14px;
+  padding:11px 16px 11px 44px;
+  color:#fff;
+  font-family:'Nunito',sans-serif; font-size:.95rem; font-weight:600;
+  outline:none;
+  transition:border-color .2s, box-shadow .2s;
+}
+.team-search:focus { border-color:var(--foam); box-shadow:0 0 0 3px rgba(144,224,239,.14); }
+.team-search::placeholder { opacity:.38; }
+.gf-pill.fav { background:linear-gradient(135deg,rgba(255,209,102,.25),rgba(255,183,3,.15)); border-color:rgba(255,209,102,.4); }
+.gf-pill.fav.on { background:linear-gradient(135deg,#ffd166,#ffb703); color:var(--deep); border-color:transparent; }
+.fav-btn {
+  background:none; border:none; cursor:pointer; font-size:1.05rem;
+  opacity:.45; transition:all .2s; padding:2px 4px; line-height:1;
+  position:absolute; top:8px; right:8px; z-index:3;
+  touch-action:manipulation;
+}
+.fav-btn.on { opacity:1; filter:drop-shadow(0 0 6px rgba(255,209,102,.7)); }
+.tcard { position:relative; }
+
+/* ═══════════════════════════════════════
+   PROSSIMO MATCH WIDGET
+═══════════════════════════════════════ */
+.next-match-wrap {
+  max-width:860px; margin:22px auto 0; padding:0 12px;
+  position:relative; z-index:2; display:none;
+}
+.next-match-card {
+  background:linear-gradient(135deg,rgba(0,20,60,.85),rgba(0,60,100,.75));
+  border:1px solid rgba(0,180,216,.35);
+  border-radius:22px; padding:22px 24px;
+  box-shadow:0 16px 60px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.07);
+  position:relative; overflow:hidden;
+}
+.next-match-card::before {
+  content:''; position:absolute;
+  top:-60px; right:-60px; width:220px; height:220px; border-radius:50%;
+  background:radial-gradient(circle,rgba(0,180,216,.18),transparent 70%);
+  pointer-events:none;
+}
+.nm-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(255,71,87,.2); border:1px solid rgba(255,71,87,.38);
+  border-radius:20px; padding:4px 14px;
+  font-size:.7rem; font-weight:900; letter-spacing:1.8px; text-transform:uppercase;
+  color:#ff9a9a; margin-bottom:16px;
+  animation:badgePulse 2.2s ease-in-out infinite;
+}
+.nm-live-dot {
+  width:7px; height:7px; border-radius:50%; background:#ff4757; display:inline-block;
+  animation:liveDot 1.1s ease-in-out infinite;
+}
+@keyframes liveDot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.35;transform:scale(.65);} }
+.nm-teams {
+  display:flex; align-items:center; justify-content:center;
+  gap:20px; flex-wrap:wrap; margin-bottom:18px;
+}
+.nm-team { text-align:center; flex:1; min-width:110px; }
+.nm-team-name {
+  font-family:'Pacifico',cursive;
+  font-size:clamp(.95rem,3.5vw,1.55rem);
+  color:#fff; text-shadow:0 2px 14px rgba(0,180,216,.4);
+  line-height:1.2; margin-bottom:3px;
+}
+.nm-team-sub { font-size:.72rem; opacity:.55; font-weight:700; }
+.nm-vs {
+  font-family:'Pacifico',cursive;
+  font-size:clamp(1.4rem,5vw,2.2rem);
+  background:linear-gradient(135deg,#ffd166,#ff6b6b);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  flex-shrink:0;
+}
+.nm-countdown { display:flex; gap:9px; justify-content:center; flex-wrap:wrap; }
+.nm-cd-box {
+  background:rgba(0,0,0,.32); border:1px solid rgba(144,224,239,.18);
+  border-radius:13px; padding:11px 13px; min-width:60px; text-align:center;
+  transition:transform .1s;
+}
+.nm-cd-box:hover { transform:translateY(-2px); }
+.nm-cd-num {
+  font-family:'Pacifico',cursive; font-size:1.55rem;
+  background:linear-gradient(180deg,#90e0ef,#0077b6);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  line-height:1; display:block;
+}
+.nm-cd-lbl { font-size:.58rem; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; opacity:.5; margin-top:3px; display:block; }
+.nm-date-lbl { text-align:center; font-size:.78rem; opacity:.5; font-weight:700; margin-top:12px; }
+.nm-done { text-align:center; font-family:'Pacifico',cursive; color:var(--foam); font-size:1.2rem; padding:6px 0; letter-spacing:.5px; }
+body.light .next-match-card { background:rgba(255,255,255,.65); border-color:rgba(0,180,216,.3); }
 </style>
 </head>
 <body>
@@ -1275,6 +1368,11 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
   </div>
 </div>
 
+<!-- PROSSIMO MATCH -->
+<div class="next-match-wrap" id="secProssimoMatch">
+  <div id="nextMatchCard"></div>
+</div>
+
 <!-- LIVE WALL -->
 <div class="live-wall" id="liveWall">
   <div class="lw-header">
@@ -1291,6 +1389,7 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
 <!-- SECTION NAV -->
 <nav class="sec-nav">
   <a href="#secSquadre"   class="sec-pill">🏐 Squadre</a>
+  <a href="#secProssimoMatch" class="sec-pill">⚡ Prossimo Match</a>
   <a href="#secTabellone" class="sec-pill">🏆 Tabellone</a>
   <a href="#secClassifica" class="sec-pill">🥇 Classifica</a>
   <a href="#secMappa"     class="sec-pill">📍 Mappa</a>
@@ -1304,6 +1403,11 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
     <div class="section-title">🏐 Le Squadre</div>
     <button class="btn-add" id="btnAdd" onclick="openAdd()">➕ Aggiungi Squadra</button>
   </div>
+  <!-- SEARCH BAR -->
+  <div class="search-wrap">
+    <span class="search-ico">🔍</span>
+    <input type="text" class="team-search" id="teamSearchInput" placeholder="Cerca squadra per nome…" oninput="applyFilters()" autocomplete="off">
+  </div>
   <!-- GIRONE FILTERS -->
   <div class="girone-filters" id="gironeFilters">
     <span class="gf-lbl">Filtro:</span>
@@ -1313,6 +1417,7 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
     <button class="gf-pill"    data-girone="C"    onclick="filterTeams('C',this)">Girone C</button>
     <button class="gf-pill"    data-girone="D"    onclick="filterTeams('D',this)">Girone D</button>
     <button class="gf-pill"    data-girone="none" onclick="filterTeams('none',this)">Senza girone</button>
+    <button class="gf-pill fav" data-girone="fav"  onclick="filterTeams('fav',this)">⭐ Preferite</button>
   </div>
   <div class="teams-grid" id="tGrid"></div>
 </main>
@@ -1630,9 +1735,23 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
     <!-- panel (shown after login) -->
     <div id="adminPanel" style="display:none;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-        <span style="font-size:.82rem;opacity:.6;">Foto e video in attesa di approvazione</span>
+        <span style="font-size:.82rem;opacity:.6;">Area di controllo torneo</span>
         <button class="btn-del-sm" onclick="adminLogout()">🚪 Esci</button>
       </div>
+      <!-- NEXT MATCH FORM -->
+      <div style="background:rgba(0,180,216,.08);border:1px solid rgba(0,180,216,.2);border-radius:14px;padding:14px;margin-bottom:18px;">
+        <div style="font-weight:900;font-size:.88rem;color:var(--foam);margin-bottom:12px;">⚡ Prossimo Match</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <input type="text" id="nmT1Input" placeholder="Squadra 1…" style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 13px;color:#fff;font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;width:100%;">
+          <input type="text" id="nmT2Input" placeholder="Squadra 2…" style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 13px;color:#fff;font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;width:100%;">
+          <input type="text" id="nmGironeInput" placeholder="Girone (es. A) – facoltativo" style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 13px;color:#fff;font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;width:100%;">
+          <input type="datetime-local" id="nmDateInput" style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 13px;color:#fff;font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;width:100%;color-scheme:dark;">
+          <button class="btn-ok" style="margin-top:2px;" onclick="adminSetNextMatch()">⚡ Salva Prossimo Match</button>
+          <button class="btn-cancel" onclick="adminClearNextMatch()">🗑️ Rimuovi match</button>
+        </div>
+      </div>
+      <!-- PENDING MEDIA -->
+      <div style="font-size:.82rem;opacity:.6;margin-bottom:10px;">📸 Foto e video in attesa di approvazione</div>
       <div id="pendingList"><div style="opacity:.38;font-size:.85rem;padding:10px;">Nessun contenuto in attesa.</div></div>
     </div>
   </div>
@@ -1657,8 +1776,6 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
   </div>
 </div>
 
-<!-- SOUND BTN -->
-<button class="snd-btn" id="sndBtn" onclick="toggleSound()" title="Suono voto">🔇</button>
 <!-- MODE TOGGLE -->
 <button class="mode-toggle" id="modeBtn" onclick="toggleMode()" title="Modalità chiara/scura">🌙</button>
 <!-- NOTIFICATIONS -->
@@ -1699,7 +1816,7 @@ body.light .cd-box   { background:rgba(255,255,255,.6); }
 const EMOJIS=['🏐','🌊','⚡','🔥','🌴','🦈','🐬','🌞','🏄','💪','🦁','🐯','🦅','🌺','🎯','🏆','🦋','🐉','🌈','⭐','🎪','🎨','🏋️','🤸','🧨','🏅','🎖️','🌻','🦊','🐺','🦝','🐸'];
 const CFT=['#ffd166','#ff6b6b','#90e0ef','#00b4d8','#52b788','#fff','#ffb703','#48cae4'];
 const EMAIL='mirkocavecchi@gmail.com';
-const ADMIN_PW = 'splashAdmin2024';   // ← cambia questa password
+const ADMIN_PW = 'splash26';   // ← password admin
 const K_TEAMS   ='fsv6_teams';
 const K_MEDIA   ='fsv6_media';
 const K_VOTES   ='fsv6_votes';
@@ -1709,7 +1826,9 @@ const K_MATCHES ='fsv6_matches';
 const K_PLAYOFF ='fsv6_playoff';
 const K_ROSTER  ='fsv6_roster';
 const K_TSTATS  ='fsv6_tstats';
-const K_PENDING ='fsv6_pending';      // media awaiting admin approval
+const K_PENDING  ='fsv6_pending';      // media awaiting admin approval
+const K_NEXTMATCH='fsv6_nextmatch';   // prossimo match data
+const K_FAVS     ='fsv6_favs';        // favourite team IDs
 const TOURNAMENT_DATE = new Date('2026-07-18T09:00:00');
 
 /* ══════════════════════════════════
@@ -1735,6 +1854,10 @@ let addEmoji  = EMOJIS[0], addImg=null;
 let editEmoji = null,       editImg=null;
 let prevLbF   = null, prevLbV=null;
 let lwIdx     = 0, lwTimer=null;
+let _nextMatch= {};
+let _favs     = [];
+let nmTimer   = null;
+let searchQ   = '';
 
 /* ══════════════════════════════════
    PERSISTENCE  (localStorage)
@@ -1754,6 +1877,8 @@ function load(){
   _roster  =JSON.parse(localStorage.getItem(K_ROSTER)   ||'{}');
   _tstats  =JSON.parse(localStorage.getItem(K_TSTATS)   ||'{}');
   _pending =JSON.parse(localStorage.getItem(K_PENDING)  ||'{}');
+  _nextMatch=JSON.parse(localStorage.getItem(K_NEXTMATCH)||'{}');
+  _favs    =JSON.parse(localStorage.getItem(K_FAVS)     ||'[]');
 }
 function saveTeams()   { localStorage.setItem(K_TEAMS,   JSON.stringify(_teams)); }
 function saveMedia()   { localStorage.setItem(K_MEDIA,   JSON.stringify(_media)); }
@@ -1763,32 +1888,9 @@ function saveMatches() { localStorage.setItem(K_MATCHES, JSON.stringify(_matches
 function savePlayoff() { localStorage.setItem(K_PLAYOFF, JSON.stringify(_playoff)); }
 function saveRoster()  { localStorage.setItem(K_ROSTER,  JSON.stringify(_roster)); }
 function saveTstats()  { localStorage.setItem(K_TSTATS,  JSON.stringify(_tstats)); }
-function savePending() { localStorage.setItem(K_PENDING, JSON.stringify(_pending)); }
-
-/* ══════════════════════════════════
-   SOUND
-══════════════════════════════════ */
-function toggleSound(){
-  soundOn=!soundOn;
-  document.getElementById('sndBtn').textContent=soundOn?'🔊':'🔇';
-  if(soundOn&&!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-}
-function playVote(score){
-  if(!soundOn||!audioCtx) return;
-  const freqs=[261,311,369,415,523,587,698,784,932,1047];
-  const f=freqs[Math.min(score-1,9)];
-  [[f,.18,.5],[f*1.25,.11,.4]].forEach(([hz,vol,dur],i)=>{
-    setTimeout(()=>{
-      const o=audioCtx.createOscillator(), g=audioCtx.createGain();
-      o.connect(g); g.connect(audioCtx.destination);
-      o.type='sine'; o.frequency.value=hz;
-      o.frequency.exponentialRampToValueAtTime(hz*1.4, audioCtx.currentTime+.15);
-      g.gain.setValueAtTime(vol,audioCtx.currentTime);
-      g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);
-      o.start(); o.stop(audioCtx.currentTime+dur);
-    },i*200);
-  });
-}
+function savePending()  { localStorage.setItem(K_PENDING,  JSON.stringify(_pending)); }
+function saveNextMatch() { localStorage.setItem(K_NEXTMATCH,JSON.stringify(_nextMatch)); }
+function saveFavs()     { localStorage.setItem(K_FAVS,     JSON.stringify(_favs)); }
 
 /* ══════════════════════════════════
    BG VISUALS (lightweight)
@@ -2017,7 +2119,6 @@ function castVote(mid,val,teamName,type){
   m.totalRating=(m.totalRating||0)+val;
   m.avgRating=Math.round(m.totalRating/m.voteCount*10)/10;
   saveMedia();
-  playVote(val);
   showGz(val,teamName);
   renderTeams();
   renderLeaderboard();
@@ -2111,9 +2212,15 @@ function renderTeams(){
   });
   grid.innerHTML='';
   let arr=Object.entries(_teams).map(([id,t])=>({id,...t})).sort((a,b)=>a.createdAt-b.createdAt);
-  // apply girone filter
+  // text search
+  const sq=document.getElementById('teamSearchInput');
+  searchQ=sq?sq.value.trim().toLowerCase():'';
+  // apply girone / fav filter
   if(activeFilter==='none') arr=arr.filter(t=>!t.girone);
+  else if(activeFilter==='fav') arr=arr.filter(t=>_favs.includes(t.id));
   else if(activeFilter!=='all') arr=arr.filter(t=>t.girone===activeFilter);
+  // apply text search
+  if(searchQ) arr=arr.filter(t=>t.name.toLowerCase().includes(searchQ));
   // show filter row only when ≥4 teams
   const filterRow=document.getElementById('gironeFilters');
   if(filterRow) filterRow.style.display=Object.keys(_teams).length>=4?'flex':'none';
@@ -2161,7 +2268,9 @@ function buildCard(t){
   const vids =tMedia.filter(m=>m.type==='video');
   const stats=_tstats[t.id]||{w:0,l:0,pts:0};
   const roster=_roster[t.id]||[];
+  const isFav=_favs.includes(t.id);
   div.innerHTML=`
+    <button class="fav-btn${isFav?' on':''}" onclick="toggleFav('${t.id}')" title="${isFav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}">${isFav?'⭐':'☆'}</button>
     ${teamBadges(t)}
     <div class="tcard-head">
       <button class="tcard-logo" onclick="openEditLogo('${t.id}')" title="Modifica stemma">
@@ -2684,13 +2793,101 @@ function dlRegolamento(){
 }
 
 /* ══════════════════════════════════
-   GIRONE FILTER
+   GIRONE FILTER + SEARCH + FAVS
 ══════════════════════════════════ */
 function filterTeams(g, btn){
   activeFilter=g;
   document.querySelectorAll('.gf-pill').forEach(b=>b.classList.remove('on'));
   if(btn) btn.classList.add('on');
   renderTeams();
+}
+function applyFilters(){ renderTeams(); }
+function toggleFav(tid){
+  const idx=_favs.indexOf(tid);
+  if(idx>=0) _favs.splice(idx,1); else _favs.push(tid);
+  saveFavs();
+  const btn=document.querySelector('#c-'+tid+' .fav-btn');
+  if(btn){
+    const on=_favs.includes(tid);
+    btn.classList.toggle('on',on);
+    btn.textContent=on?'⭐':'☆';
+    btn.title=on?'Rimuovi dai preferiti':'Aggiungi ai preferiti';
+  }
+  if(activeFilter==='fav') renderTeams();
+}
+
+/* ══════════════════════════════════
+   PROSSIMO MATCH
+══════════════════════════════════ */
+function renderNextMatch(){
+  const wrap=document.getElementById('nextMatchCard');
+  const sec =document.getElementById('secProssimoMatch');
+  if(!wrap||!sec) return;
+  if(!_nextMatch||!_nextMatch.t1||!_nextMatch.t2){ sec.style.display='none'; wrap.innerHTML=''; return; }
+  sec.style.display='block';
+  const now=new Date();
+  const matchDate=_nextMatch.date?new Date(_nextMatch.date):null;
+  const diff=matchDate?(matchDate-now):-1;
+  let cdHtml='';
+  if(!matchDate||diff<=0){
+    cdHtml=`<div class="nm-done">🏐 Match in corso ora! Forza! 🌊</div>`;
+  } else {
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor((diff%86400000)/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    const z=n=>String(n).padStart(2,'0');
+    cdHtml=`<div class="nm-countdown">
+      ${d>0?`<div class="nm-cd-box"><span class="nm-cd-num">${z(d)}</span><span class="nm-cd-lbl">Giorni</span></div>`:''}
+      <div class="nm-cd-box"><span class="nm-cd-num">${z(h)}</span><span class="nm-cd-lbl">Ore</span></div>
+      <div class="nm-cd-box"><span class="nm-cd-num">${z(m)}</span><span class="nm-cd-lbl">Min</span></div>
+      <div class="nm-cd-box"><span class="nm-cd-num">${z(s)}</span><span class="nm-cd-lbl">Sec</span></div>
+    </div>`;
+  }
+  const dateStr=matchDate?matchDate.toLocaleString('it-IT',{weekday:'short',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'}):'';
+  wrap.innerHTML=`<div class="next-match-card">
+    <div style="text-align:center;">
+      <div class="nm-badge"><span class="nm-live-dot"></span>${diff>0?'PROSSIMO MATCH':'IN CORSO'}</div>
+    </div>
+    <div class="nm-teams">
+      <div class="nm-team">
+        <div class="nm-team-name">${esc(_nextMatch.t1)}</div>
+        ${_nextMatch.girone?`<div class="nm-team-sub">Girone ${esc(_nextMatch.girone)}</div>`:''}
+      </div>
+      <div class="nm-vs">VS</div>
+      <div class="nm-team">
+        <div class="nm-team-name">${esc(_nextMatch.t2)}</div>
+        ${_nextMatch.girone?`<div class="nm-team-sub">Girone ${esc(_nextMatch.girone)}</div>`:''}
+      </div>
+    </div>
+    ${cdHtml}
+    ${dateStr?`<div class="nm-date-lbl">📅 ${dateStr}</div>`:''}
+  </div>`;
+}
+function startNextMatchCountdown(){
+  if(nmTimer) clearInterval(nmTimer);
+  renderNextMatch();
+  if(_nextMatch&&_nextMatch.t1) nmTimer=setInterval(renderNextMatch,1000);
+}
+function adminSetNextMatch(){
+  const t1=document.getElementById('nmT1Input').value.trim();
+  const t2=document.getElementById('nmT2Input').value.trim();
+  if(!t1||!t2){ toast('⚠️ Inserisci entrambe le squadre!'); return; }
+  const girone=document.getElementById('nmGironeInput').value.trim();
+  const date  =document.getElementById('nmDateInput').value;
+  _nextMatch={t1,t2,girone:girone||'',date:date||null};
+  saveNextMatch();
+  if(nmTimer) clearInterval(nmTimer);
+  nmTimer=setInterval(renderNextMatch,1000);
+  renderNextMatch();
+  toast('✅ Prossimo match salvato!');
+}
+function adminClearNextMatch(){
+  _nextMatch={};
+  saveNextMatch();
+  if(nmTimer){ clearInterval(nmTimer); nmTimer=null; }
+  renderNextMatch();
+  toast('🗑️ Match rimosso.');
 }
 
 /* ══════════════════════════════════
@@ -2866,6 +3063,7 @@ renderLeaderboard();
 renderGironi();
 buildLiveWall();
 startCountdown();
+startNextMatchCountdown();
 scheduleLeaderboard();
 updateAdminBadge();
 loadWeather();
